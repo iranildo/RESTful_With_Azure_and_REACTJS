@@ -4,8 +4,9 @@ using RESTful_With_Azure_and_REACTJS.Services.Implementations;
 
 namespace RESTful_With_Azure_and_REACTJS.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion")]
     public class PersonController : ControllerBase
     {
 
