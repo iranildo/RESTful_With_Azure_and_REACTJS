@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RESTful_With_Azure_and_REACTJS.Model.Context;
-using RESTful_With_Azure_and_REACTJS.Services.Implementations;
 using System.Configuration;
+using RESTful_With_Azure_and_REACTJS.Repository;
+using RESTful_With_Azure_and_REACTJS.Repository.Implementations;
 
 namespace RESTful_With_Azure_and_REACTJS
 {
@@ -21,7 +22,7 @@ namespace RESTful_With_Azure_and_REACTJS
             var connection = Configuration["MySQLConnection: MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, null));
             // Injeção de Dependêcia
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
         }
     }
 }

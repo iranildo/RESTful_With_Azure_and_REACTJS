@@ -1,14 +1,15 @@
 ﻿using RESTful_With_Azure_and_REACTJS.Model;
 using RESTful_With_Azure_and_REACTJS.Model.Context;
+using RESTful_With_Azure_and_REACTJS.Repository;
 
-namespace RESTful_With_Azure_and_REACTJS.Services.Implementations
+namespace RESTful_With_Azure_and_REACTJS.Repository.Implementations
 {
-    public class PersonServiceImplementation : IPersonService // A Classe implenta a interface Person
+    public class PersonRepositoryImplementation : IPersonRepository // A Classe implenta a interface Person
     {
         private MySQLContext _context;
 
 
-        public PersonServiceImplementation(MySQLContext context )
+        public PersonRepositoryImplementation(MySQLContext context )
         {
   
             _context = context;
@@ -89,7 +90,7 @@ namespace RESTful_With_Azure_and_REACTJS.Services.Implementations
             return person;
         }
 
-        private bool Exists(long id)
+        public bool Exists(long id)
         {
             return _context.Persons.Any(p => p.Id.Equals(id));
         }
