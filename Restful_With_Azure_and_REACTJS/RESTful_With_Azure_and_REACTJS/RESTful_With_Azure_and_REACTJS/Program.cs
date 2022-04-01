@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using RESTful_With_Azure_and_REACTJS.Model.Context;
 using RESTful_With_Azure_and_REACTJS.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
+builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+//Versioning
+builder.Services.AddApiVersioning();
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
